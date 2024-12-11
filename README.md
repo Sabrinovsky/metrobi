@@ -3,6 +3,7 @@
 Challenges 3 and 6 (visual), you must follow those steps:
 
 > npm install
+> 
 > npm run dev
 
 the challenge 3 is on route /
