@@ -1,9 +1,16 @@
 function getMaxValue(carrotTypes, capacity) {
-  carrotTypes.sort((a, b) => b.price / b.kg - a.price / a.kg);
-
-  const price = carrotTypes[0].price / carrotTypes[0].kg;
-
-  return price * capacity;
+  const capacities = Array(capacity + 1).fill(0);
+  for (let i = 0; i <= capacity; i++) {
+    for (const carrot of carrotTypes) {
+      if (i >= carrot.kg) {
+        capacities[i] = Math.max(
+          capacities[i],
+          capacities[i - carrot.kg] + carrot.price
+        );
+      }
+    }
+  }
+  return capacities[capacity];
 }
 
 const carrotTypes = [
@@ -11,6 +18,6 @@ const carrotTypes = [
   { kg: 7, price: 150 },
   { kg: 3, price: 70 },
 ];
-const capacity = 36;
+const capacity = 37;
 
 console.log(getMaxValue(carrotTypes, capacity));
